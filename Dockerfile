@@ -41,6 +41,20 @@ RUN \
   # Mask systemd units which will fail
   systemctl mask tmp.mount systemd-tmpfiles-setup.service
 
+RUN \
+  # Installing Busser
+  GEM_HOME="/tmp/verifier/gems" \
+  GEM_PATH="/tmp/verifier/gems" \
+  GEM_CACHE="/tmp/verifier/gems/cache" \
+  gem install busser --no-rdoc --no-ri \
+    --no-format-executable -n /tmp/verifier/bin --no-user-install && \
+
+  # Busser plugins
+  GEM_HOME="/tmp/verifier/gems" \
+  GEM_PATH="/tmp/verifier/gems" \
+  GEM_CACHE="/tmp/verifier/gems/cache" \
+  gem install busser-serverspec serverspec --no-rdoc --no-ri
+
 ENV LANG=en_US.UTF-8
 VOLUME ["/sys/fs/cgroup", "/run"]
 CMD  ["/usr/lib/systemd/systemd"]
