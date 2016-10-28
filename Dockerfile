@@ -16,20 +16,17 @@ RUN \
   # Install what is needed for building native extensions
   pacman -S gcc make --noconfirm --noprogressbar --quiet && \
 
-  # Install Ruby 2.1 and add symbolic link to binaries
-  pacman -S ruby2.1 --noconfirm --noprogressbar --quiet && \
-  for bin in $(ls /opt/ruby2.1/bin | grep -v '\-2\.1'); do \
-    ln -s /opt/ruby2.1/bin/$bin /usr/bin/$bin; \
-  done && \
+  # Install Ruby
+  pacman -S ruby --noconfirm --noprogressbar --quiet && \
+  # Install useful tools
+  pacman -S vim tree --noconfirm --noprogressbar --quiet && \
 
-  # Install Chef from gems. Force rack to be 1.6.4 for ruby 2.1 support
-  gem install rack --version 1.6.4 --no-user-install --no-rdoc --no-ri && \
+  # Install Chef from gems
   gem install chef --no-user-install --no-rdoc --no-ri && \
 
-  # Add a symbolic link for every binaries (gems we just installed)
-  for bin in $(ls /opt/ruby2.1/bin); do \
-    ln -s /opt/ruby2.1/bin/$bin /usr/bin/$bin -f; \
-  done && \
+  # Fake gem installation in chef directory
+  mkdir -p /opt/chef/embedded/bin/ && \
+  ln -s /usr/bin/gem /opt/chef/embedded/bin/gem && \
 
   # Generate locale en_US (workaround for a strange bug in berkshelf)
   locale-gen en_US.UTF-8 && \
