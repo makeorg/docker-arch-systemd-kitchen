@@ -14,7 +14,7 @@ RUN \
   pacman -S sudo --noconfirm --noprogressbar --quiet && \
 
   # Install what is needed for building native extensions
-  pacman -S gcc make --noconfirm --noprogressbar --quiet && \
+  pacman -S gcc make sed awk grep --noconfirm --noprogressbar --quiet && \
 
   # Install Ruby
   pacman -S ruby --noconfirm --noprogressbar --quiet && \
