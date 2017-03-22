@@ -53,7 +53,7 @@ RUN \
   GEM_HOME="/tmp/verifier/gems" \
   GEM_PATH="/tmp/verifier/gems" \
   GEM_CACHE="/tmp/verifier/gems/cache" \
-  gem install busser-serverspec serverspec --no-rdoc --no-ri
+  gem install busser-serverspec serverspec --no-rdoc --no-ri --no-user-install
 
 ENV LANG=en_US.UTF-8
 VOLUME ["/sys/fs/cgroup", "/run"]
