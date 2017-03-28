@@ -14,7 +14,7 @@ RUN \
   pacman -S sudo --noconfirm --noprogressbar --quiet && \
 
   # Install what is needed for building native extensions
-  pacman -S gcc make sed awk grep --noconfirm --noprogressbar --quiet && \
+  pacman -S gcc make sed awk gzip grep --noconfirm --noprogressbar --quiet && \
 
   # Install Ruby
   pacman -S ruby --noconfirm --noprogressbar --quiet && \
@@ -29,7 +29,8 @@ RUN \
   ln -s /usr/bin/gem /opt/chef/embedded/bin/gem && \
 
   # Generate locale en_US (workaround for a strange bug in berkshelf)
-  locale-gen en_US.UTF-8 && \
+  echo 'en_US.UTF-8 UTF-8' >> /etc/locale.gen && \
+  locale-gen && \
 
   # Time to clean
   pacman -Rs gcc make --noconfirm --noprogressbar && \
