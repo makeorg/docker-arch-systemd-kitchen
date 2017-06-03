@@ -37,10 +37,7 @@ RUN \
   pacman -Scc --noconfirm --noprogressbar --quiet && \
 
   # Mask systemd units which will fail
-  systemctl mask tmp.mount systemd-tmpfiles-setup.service && \
-
-  # Because systemd is not installed in the same path across distributions
-  ln -s /lib/systemd/systemd /sbin/init
+  systemctl mask tmp.mount systemd-tmpfiles-setup.service
 
 RUN \
   # Installing Busser
