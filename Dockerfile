@@ -11,7 +11,7 @@ RUN \
   pacman -Su --noconfirm --noprogressbar --quiet && \
 
   # Install useful packages
-  pacman -S sudo --noconfirm --noprogressbar --quiet && \
+  pacman -S sudo systemd --noconfirm --noprogressbar --quiet && \
 
   # Install what is needed for building native extensions
   pacman -S gcc make sed awk gzip grep --noconfirm --noprogressbar --quiet && \
