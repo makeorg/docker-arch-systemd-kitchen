@@ -23,7 +23,7 @@ RUN \
   pacman -S vim tree iproute2 --noconfirm --noprogressbar --quiet && \
 
   # Install Chef from gems
-  gem install chef --no-user-install --no-rdoc --no-ri && \
+  gem install chef --no-user-install --no-document && \
 
   # Fake gem installation in chef directory
   mkdir -p /opt/chef/embedded/bin/ && \
@@ -49,14 +49,14 @@ RUN \
   GEM_HOME="/tmp/verifier/gems" \
   GEM_PATH="/tmp/verifier/gems" \
   GEM_CACHE="/tmp/verifier/gems/cache" \
-  gem install busser --no-rdoc --no-ri \
+  gem install busser --no-document \
     --no-format-executable -n /tmp/verifier/bin --no-user-install && \
 
   # Busser plugins
   GEM_HOME="/tmp/verifier/gems" \
   GEM_PATH="/tmp/verifier/gems" \
   GEM_CACHE="/tmp/verifier/gems/cache" \
-  gem install busser-serverspec serverspec --no-rdoc --no-ri --no-user-install
+  gem install busser-serverspec serverspec --no-document --no-user-install
 
 ENV LANG=en_US.UTF-8
 VOLUME ["/sys/fs/cgroup", "/run"]
